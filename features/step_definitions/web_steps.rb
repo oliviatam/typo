@@ -31,13 +31,32 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+Given /^I am an admin$/ do
+  User.create!({:login => 'admin',
+                :password => 'aaaaaaaa',
+                :email => 'olivia.tam@outlook.com',
+                :profile_id => 1,
+                :name => 'admin',
+                :state => 'active'})
+end
+
+
+Given /^I am not an admin$/ do
+   User.create!({:login => 'publisher',
+                :password => 'aaaaaaaa',
+                :email => 'olivia.tam@outlook.com',
+                :profile_id => 2,
+                :name => 'publisher',
+                :state => 'active'})
+end
+
 Given /^the blog is set up$/ do
   Blog.default.update_attributes!({:blog_name => 'Teh Blag',
                                    :base_url => 'http://localhost:3000'});
   Blog.default.save!
   User.create!({:login => 'admin',
                 :password => 'aaaaaaaa',
-                :email => 'joe@snow.com',
+                :email => 'olivia.tam@outlook.com',
                 :profile_id => 1,
                 :name => 'admin',
                 :state => 'active'})
